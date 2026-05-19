@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxiktado67aaa"]
+
+[ext_resource type="Script" uid="uid://d12qhu1d8xocj" path="res://common/LoadingScreen/loading_screen.gd" id="1_7il6g"]
+[ext_resource type="Texture2D" uid="uid://det0hlfn6hw0x" path="res://assets/blank.png" id="1_ekb2x"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7il6g")
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ekb2x")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -24.0
+offset_right = 28.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -4.5
+offset_right = 2.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0

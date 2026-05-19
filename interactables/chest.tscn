@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://cobqg5sqyqmtr"]
+
+[ext_resource type="Script" uid="uid://b77j60f1n73fi" path="res://interactables/chest.gd" id="1_4jpn1"]
+[ext_resource type="Texture2D" uid="uid://dtxwk12strknv" path="res://assets/treasurechest_icon.png" id="1_lqqk0"]
+[ext_resource type="Script" uid="uid://cms632wg5vrc1" path="res://powerups/powerup.gd" id="2_ql3qr"]
+
+[sub_resource type="Resource" id="Resource_7a7mp"]
+script = ExtResource("2_ql3qr")
+metadata/_custom_type_script = "uid://cms632wg5vrc1"
+
+[sub_resource type="Resource" id="Resource_yajpr"]
+script = ExtResource("2_ql3qr")
+stat = 1
+metadata/_custom_type_script = "uid://cms632wg5vrc1"
+
+[sub_resource type="Resource" id="Resource_ql3qr"]
+script = ExtResource("2_ql3qr")
+stat = 2
+metadata/_custom_type_script = "uid://cms632wg5vrc1"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jpn1"]
+size = Vector2(15, 21)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jpn1"]
+radius = 25.0
+height = 50.0
+
+[node name="Chest" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_4jpn1")
+powerup_pool = Array[ExtResource("2_ql3qr")]([SubResource("Resource_7a7mp"), SubResource("Resource_yajpr"), SubResource("Resource_ql3qr")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lqqk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.49999997, -0.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_4jpn1")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4jpn1")
+
+[node name="Popup" type="PanelContainer" parent="."]
+visible = false
+z_index = 1
+offset_left = -8.0
+offset_top = -29.0
+offset_right = 8.0
+offset_bottom = -13.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="KeyBindLabel" type="Label" parent="Popup/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Effect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -27.0
+offset_right = 20.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EffectLabel" type="Label" parent="Effect"]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -11.5
+offset_right = 38.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 11)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Stat boosted!"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_exited"]

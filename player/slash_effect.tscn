@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://df5yak3owdy1k"]
+
+[ext_resource type="Texture2D" uid="uid://dsd5tapy8sfhq" path="res://assets/pixel_art_sword_slash_sprites.png" id="1_lb1p6"]
+[ext_resource type="Script" uid="uid://ci0eoaelfi23h" path="res://player/slash_effect.gd" id="2_lb1p6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spj7r"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(0, 0, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k71fk"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(64, 0, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqs0s"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(128, 0, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sut4n"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(0, 47, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7obej"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(64, 47, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xbw0"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(128, 47, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkqba"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(0, 94, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i2dk"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(64, 94, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ahrv"]
+atlas = ExtResource("1_lb1p6")
+region = Rect2(128, 94, 64, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7obej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spj7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqs0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sut4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7obej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xbw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkqba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i2dk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ahrv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ggk45"]
+radius = 18.0
+height = 56.0
+
+[node name="SlashEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7obej")
+frame = 8
+frame_progress = 1.0
+script = ExtResource("2_lb1p6")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ggk45")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
