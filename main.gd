@@ -3,6 +3,7 @@ extends Node2D
 @export var map_width: int = 100
 @export var map_height: int = 100
 @export var enemy_stats: EnemyStats
+@export var flying_enemy_stats: FlyingEnemyStats
 #@export var difficulty_increase_limit: int = 5
 
 signal game_results(result: String)
@@ -11,6 +12,7 @@ const TUTORIAL_SCREEN = preload("uid://bbiqssgt5kfif")
 
 const PLAYER = preload("uid://comnolmmr12ub")
 const ENEMY = preload("uid://cjs8832dw81os")
+const FLYING_ENEMY = preload("uid://ddphwquiucc5r")
 
 # Example shapes defined by their grid offsets
 const SHAPES = {
@@ -18,7 +20,9 @@ const SHAPES = {
 	"T": [Vector2i(0,0), Vector2i(-1,0), Vector2i(1,0), Vector2i(0,1)],
 	"O": [Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
 	"L": [Vector2i(0,0), Vector2i(0,-1), Vector2i(0,1), Vector2i(1,1)],
-	"Y": [Vector2i(0,0), Vector2i(1,0), Vector2i(1,-1), Vector2i(0,1)]
+	"L-inverted": [Vector2i(0,0), Vector2i(0,-1), Vector2i(0,1), Vector2i(-1,1)],
+	"Z": [Vector2i(0,0), Vector2i(1,0), Vector2i(1,-1), Vector2i(0,1)],
+	"Z-inverted": [Vector2i(0,0), Vector2i(-1,0), Vector2i(-1,-1), Vector2i(0,1)]
 }
 
 # Explicitly build a typed array from the constant data
@@ -42,6 +46,7 @@ func _ready() -> void:
 		show_tutorial()
 	
 	enemy_stats = enemy_stats.duplicate()
+	flying_enemy_stats = flying_enemy_stats.duplicate()
 	map_generator.generate_map(map_width, map_height)
 	map_data = map_generator.grid_data
 	current_shape = get_new_piece()
@@ -120,12 +125,11 @@ func can_place_shape(target_pos: Vector2i, shape: Array[Vector2i]) -> bool:
 	for offset in shape:
 		var check_pos = target_pos + offset
 		
-		# If the space is an island, placement fails
-		if map_data.get(check_pos) == "island" or map_data.get(check_pos) == "boundary":
+		# If the space is a bridge or boundary, placement fails
+		if map_data.get(check_pos) == "bridge" or map_data.get(check_pos) == "boundary":
 			return false
 			
-		# Optional: If the space already has a placed bridge/block, prevent overwriting
-		if map_data.get(check_pos) == "bridge":
+		if map_data.get(check_pos) == "chest":
 			return false
 			
 		# Optional: Ensure they aren't placing it out of bounds/in empty non-existent keys
@@ -184,7 +188,24 @@ func _on_difficulty_increase_timer_timeout() -> void:
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawn_enemy()
+	spawn_flying_enemy()
 	
+	
+func spawn_flying_enemy() -> void:
+	var flying_enemy = FLYING_ENEMY.instantiate() as CharacterBody2D
+	flying_enemy.stats = flying_enemy_stats.duplicate()
+	
+	# Set chunk dimension
+	var chunk_pixel_size: float = map_generator.min_room_size.x * 32.0
+	var max_dist: float = 2.0 * chunk_pixel_size
+	
+	# Spawn within 2 chunks of player
+	var offset_x = randf_range(-max_dist, max_dist)
+	var offset_y = randf_range(-max_dist, max_dist)
+	var spawn_position = player.global_position + Vector2(offset_x, offset_y)
+	flying_enemy.global_position = spawn_position
+	add_child(flying_enemy)
+
 
 func spawn_enemy() -> void:
 	var enemy = ENEMY.instantiate() as CharacterBody2D

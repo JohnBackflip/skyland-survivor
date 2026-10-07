@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://ds7pfrpnakei"]
+[gd_scene format=3 uid="uid://ds7pfrpnakei"]
 
 [ext_resource type="Texture2D" uid="uid://cn8co11gl2t7g" path="res://assets/skyblue_tile.png" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://b0wc7an05ormj" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Resource" uid="uid://q27ekp2cciw6" path="res://enemy/enemy_stats.tres" id="2_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bl8csgwr00k6g" path="res://assets/grassygreen_tile.png" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://cl4ykwit7nif8" path="res://assets/dirtbrown_tile.png" id="3_7mycd"]
+[ext_resource type="Resource" uid="uid://cppksbchpoiah" path="res://enemy/flying_enemy_stats.tres" id="3_yaehf"]
 [ext_resource type="Script" uid="uid://crxxfesx33wya" path="res://common/bsp_generator/bsp_generator.gd" id="4_272bh"]
 [ext_resource type="Script" uid="uid://c8um5ic8k1etl" path="res://ui/health_ui.gd" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://b3is5xeamr7ss" path="res://assets/ui.png" id="6_7mycd"]
@@ -76,17 +77,18 @@ texture = ExtResource("6_7mycd")
 texture_margin_left = 1.0
 texture_margin_right = 1.0
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1128206649]
 script = ExtResource("1_lquwl")
 enemy_stats = ExtResource("2_efxa6")
+flying_enemy_stats = ExtResource("3_yaehf")
 
-[node name="Map" type="TileMapLayer" parent="."]
+[node name="Map" type="TileMapLayer" parent="." unique_id=1102946485]
 tile_set = SubResource("TileSet_efxa6")
 
-[node name="PreviewLayer" type="TileMapLayer" parent="."]
+[node name="PreviewLayer" type="TileMapLayer" parent="." unique_id=444014186]
 tile_set = SubResource("TileSet_lquwl")
 
-[node name="MapGenerator" type="Node" parent="." node_paths=PackedStringArray("tile_map")]
+[node name="MapGenerator" type="Node" parent="." unique_id=358549735 node_paths=PackedStringArray("tile_map")]
 script = ExtResource("4_272bh")
 map_size = Vector2i(100, 100)
 min_room_size = Vector2i(15, 15)
@@ -96,9 +98,9 @@ tile_map = NodePath("../Map")
 room_tile_index = 1
 connection_tile_index = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1579440458]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=550137545]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,19 +109,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD" unique_id=1351415374]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 3.0
 offset_right = 87.0
 offset_bottom = 74.0
 
-[node name="HealthUI" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="HealthUI" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer" unique_id=486147265]
 layout_mode = 2
 theme_override_constants/separation = 6
 script = ExtResource("6_4c57u")
 
-[node name="HealthLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthUI"]
+[node name="HealthLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthUI" unique_id=1186025535]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -127,7 +129,7 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 text = "HP"
 
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/HUD/VBoxContainer/HealthUI"]
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/HUD/VBoxContainer/HealthUI" unique_id=381477067]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 value = 50.0
@@ -136,7 +138,7 @@ texture_over = ExtResource("6_kek77")
 texture_progress = ExtResource("7_4c57u")
 tint_progress = Color(1, 0, 0, 1)
 
-[node name="HealthValueLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthUI"]
+[node name="HealthValueLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthUI" unique_id=299700072]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -144,7 +146,7 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 text = "100 / 100"
 
-[node name="CurrentBlockLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="CurrentBlockLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1363436681]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -152,7 +154,7 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 text = "Current Piece:"
 
-[node name="CurrentBlockDisplay" type="PanelContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="CurrentBlockDisplay" type="PanelContainer" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1724165630]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -160,11 +162,11 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_272bh")
 script = ExtResource("7_272bh")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/HUD/VBoxContainer/CurrentBlockDisplay"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/HUD/VBoxContainer/CurrentBlockDisplay" unique_id=1847717262]
 layout_mode = 2
 columns = 3
 
-[node name="KeybindLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer"]
+[node name="KeybindLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer" unique_id=222206563]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -174,7 +176,7 @@ text = "Rotate: R
 Place Piece: Right-click
 Attack: Left-click"
 
-[node name="GameResults" type="Control" parent="CanvasLayer/HUD"]
+[node name="GameResults" type="Control" parent="CanvasLayer/HUD" unique_id=1975062626]
 process_mode = 2
 visible = false
 layout_mode = 1
@@ -185,7 +187,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_dg77c")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/HUD/GameResults"]
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD/GameResults" unique_id=986507973]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -200,7 +202,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_dg77c")
 
-[node name="GameResultLabel" type="Label" parent="CanvasLayer/HUD/GameResults"]
+[node name="GameResultLabel" type="Label" parent="CanvasLayer/HUD/GameResults" unique_id=1322274015]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -221,7 +223,7 @@ text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/GameResults"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/GameResults" unique_id=1810966261]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -237,7 +239,7 @@ grow_vertical = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/HUD/GameResults/HBoxContainer"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/HUD/GameResults/HBoxContainer" unique_id=46770513]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("13_ycdy4")
@@ -245,7 +247,7 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 text = "Restart Game"
 
-[node name="ReturnButton" type="Button" parent="CanvasLayer/HUD/GameResults/HBoxContainer"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer/HUD/GameResults/HBoxContainer" unique_id=227474327]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 theme = ExtResource("13_ycdy4")
@@ -253,11 +255,11 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 12
 text = "Return to Menu"
 
-[node name="Menu" parent="CanvasLayer/HUD" instance=ExtResource("14_2cqfq")]
+[node name="Menu" parent="CanvasLayer/HUD" unique_id=88379194 instance=ExtResource("14_2cqfq")]
 visible = false
 layout_mode = 1
 
-[node name="TimeLeftLabel" type="Label" parent="CanvasLayer"]
+[node name="TimeLeftLabel" type="Label" parent="CanvasLayer" unique_id=60580060]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -271,25 +273,25 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 16
 text = "5:00"
 
-[node name="EnemySpawnTimer" type="Timer" parent="."]
+[node name="EnemySpawnTimer" type="Timer" parent="." unique_id=1818955277]
 wait_time = 3.0
 autostart = true
 
-[node name="DifficultyIncreaseTimer" type="Timer" parent="."]
+[node name="DifficultyIncreaseTimer" type="Timer" parent="." unique_id=2084049350]
 wait_time = 60.0
 autostart = true
 
-[node name="WinTimer" type="Timer" parent="."]
+[node name="WinTimer" type="Timer" parent="." unique_id=538366473]
 wait_time = 300.0
 one_shot = true
 autostart = true
 
-[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="." unique_id=1433513380]
 stream = ExtResource("14_w48qg")
 volume_db = -3.0
 autoplay = true
 
-[node name="BlockPlacementSfxPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BlockPlacementSfxPlayer" type="AudioStreamPlayer" parent="." unique_id=214614223]
 stream = ExtResource("15_vivmo")
 volume_db = -5.0
 

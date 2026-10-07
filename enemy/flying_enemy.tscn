@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://ddphwquiucc5r"]
+
+[ext_resource type="Script" uid="uid://dsungl34pwed5" path="res://enemy/flying_enemy.gd" id="1_fm2vn"]
+[ext_resource type="Resource" uid="uid://cppksbchpoiah" path="res://enemy/flying_enemy_stats.tres" id="2_fm2vn"]
+[ext_resource type="Texture2D" uid="uid://b400gqplcfk43" path="res://assets/monsters.png" id="3_m6ard"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
+atlas = ExtResource("3_m6ard")
+region = Rect2(193, 195, 31, 23)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qi2p4"]
+radius = 8.823519
+height = 17.647038
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ofsxj"]
+height = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ppra6"]
+radius = 4.0
+
+[node name="FlyingEnemy" type="CharacterBody2D" unique_id=223255690 groups=["enemy"]]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_fm2vn")
+stats = ExtResource("2_fm2vn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=274814828]
+texture = SubResource("AtlasTexture_4gyqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=925738238]
+position = Vector2(0, 2)
+scale = Vector2(1, 0.6800008)
+shape = SubResource("CapsuleShape2D_qi2p4")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2088915741 groups=["hurtbox"]]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1384220732]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.5200011)
+shape = SubResource("CapsuleShape2D_ofsxj")
+debug_color = Color(0.31388378, 0.62263083, 0.19903037, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1777208343 groups=["hitbox"]]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=970501152]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.51999956)
+shape = SubResource("CapsuleShape2D_ofsxj")
+debug_color = Color(0.7978279, 0.19123119, 0.15573478, 0.41960785)
+
+[node name="SeparationArea" type="Area2D" parent="." unique_id=409338992]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeparationArea" unique_id=398692504]
+shape = SubResource("CircleShape2D_ppra6")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
