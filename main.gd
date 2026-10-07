@@ -188,6 +188,9 @@ func _on_difficulty_increase_timer_timeout() -> void:
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawn_enemy()
+	
+
+func _on_flying_enemy_spawn_timer_timeout() -> void:
 	spawn_flying_enemy()
 	
 	

@@ -295,8 +295,13 @@ autoplay = true
 stream = ExtResource("15_vivmo")
 volume_db = -5.0
 
+[node name="FlyingEnemySpawnTimer" type="Timer" parent="." unique_id=165462304]
+wait_time = 7.0
+autostart = true
+
 [connection signal="pressed" from="CanvasLayer/HUD/GameResults/HBoxContainer/RestartButton" to="CanvasLayer/HUD/GameResults" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HUD/GameResults/HBoxContainer/ReturnButton" to="CanvasLayer/HUD/GameResults" method="_on_return_button_pressed"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="DifficultyIncreaseTimer" to="." method="_on_difficulty_increase_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
+[connection signal="timeout" from="FlyingEnemySpawnTimer" to="." method="_on_flying_enemy_spawn_timer_timeout"]
