@@ -1,10 +1,13 @@
 extends Node
 
+enum DifficultyLevel {EASY, MEDIUM, HARD}
+
 var is_first_login: bool = true
+var target_scene_path: String
+
+var difficulty: DifficultyLevel = DifficultyLevel.MEDIUM
 
 const LOADING_SCREEN_PATH = "res://common/LoadingScreen/loading_screen.tscn"
-
-var target_scene_path: String
 
 
 func load_scene(path: String):

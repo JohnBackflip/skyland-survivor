@@ -123,6 +123,7 @@ script = ExtResource("6_4c57u")
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthUI" unique_id=1186025535]
 layout_mode = 2
+theme = ExtResource("13_ycdy4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -140,6 +141,7 @@ tint_progress = Color(1, 0, 0, 1)
 
 [node name="HealthValueLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthUI" unique_id=299700072]
 layout_mode = 2
+theme = ExtResource("13_ycdy4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -148,6 +150,7 @@ text = "100 / 100"
 
 [node name="CurrentBlockLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer" unique_id=1363436681]
 layout_mode = 2
+theme = ExtResource("13_ycdy4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -168,6 +171,7 @@ columns = 3
 
 [node name="KeybindLabel" type="Label" parent="CanvasLayer/HUD/VBoxContainer" unique_id=222206563]
 layout_mode = 2
+theme = ExtResource("13_ycdy4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -267,6 +271,7 @@ offset_left = -16.0
 offset_right = 16.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme = ExtResource("13_ycdy4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3

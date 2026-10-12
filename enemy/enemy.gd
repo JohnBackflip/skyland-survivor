@@ -90,7 +90,7 @@ func move_along_path() -> void:
 
 func increase_stats() -> void:
 	var hp_percentage = current_health / stats.max_health
-	stats.increase_stats()
+	stats.increase_stats(game_manager.difficulty)
 	current_health = stats.max_health * hp_percentage
 
 

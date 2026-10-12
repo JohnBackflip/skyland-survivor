@@ -174,14 +174,15 @@ func rotate_current_shape():
 # Enemy
 func _on_difficulty_increase_timer_timeout() -> void:
 	difficulty_increase_count += 1
-	# Increase stats for previously spawned enemies
+	# Increase enemy stats
+	enemy_stats.increase_stats(game_manager.difficulty)
+	# Update stats for previously spawned enemies
 	get_tree().call_group("enemy", "increase_stats")
-	# Increase stats for future enemies
-	enemy_stats.increase_stats()
 	if $EnemySpawnTimer.wait_time >= 1.0:
 		$EnemySpawnTimer.wait_time -= 0.5
 		clampf($EnemySpawnTimer.wait_time, 1.0, 3.0)
 	print("Difficulty increased!")
+	print("New enemy stats: \n Max Health: %s, Damage: %s, Speed: %s" % [str(enemy_stats.max_health), str(enemy_stats.damage), str(enemy_stats.speed)])
 	#if difficulty_increase_count >= difficulty_increase_limit:
 		#$DifficultyIncreaseTimer.queue_free()
 
