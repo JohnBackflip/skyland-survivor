@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://comnolmmr12ub"]
+[gd_scene format=3 uid="uid://comnolmmr12ub"]
 
 [ext_resource type="Script" uid="uid://di8dsdfcaf5vn" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://dvekoj6sff5xd" path="res://assets/Player.png" id="2_g1dw6"]
+[ext_resource type="Resource" uid="uid://cicsrhx3mbyxw" path="res://sidearms/bazooka.tres" id="2_yw30f"]
 [ext_resource type="AudioStream" uid="uid://degxwa35vdnvk" path="res://assets/audio/sword_sfx.mp3" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://det0hlfn6hw0x" path="res://assets/blank.png" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 8.5
@@ -11,42 +13,60 @@ height = 21.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1dw6"]
 height = 28.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=744340698 groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
+equipped_sidearm = ExtResource("2_yw30f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1886787975]
+position = Vector2(0, -5)
 texture = ExtResource("2_g1dw6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 5.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=693322954]
+position = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_rkbax")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=426387182]
 limit_left = 0
 limit_top = 0
 
-[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=558328897 groups=["hurtbox"]]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=137770768]
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_g1dw6")
 debug_color = Color(0.3054652, 0.6175362, 0.33021566, 0.41960785)
 
-[node name="AttackCooldown" type="Timer" parent="."]
+[node name="AttackCooldown" type="Timer" parent="." unique_id=628166830]
 
-[node name="IFrameTimer" type="Timer" parent="."]
+[node name="IFrameTimer" type="Timer" parent="." unique_id=1359118053]
 
-[node name="HealthRegenTimer" type="Timer" parent="."]
+[node name="HealthRegenTimer" type="Timer" parent="." unique_id=1726978609]
 wait_time = 10.0
 autostart = true
 
-[node name="AttackSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AttackSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2086698772]
 stream = ExtResource("3_g1dw6")
+
+[node name="SidearmCooldown" type="Timer" parent="." unique_id=767783704]
+
+[node name="SidearmCooldownBar" type="TextureProgressBar" parent="." unique_id=1777109309]
+visible = false
+offset_left = 16.0
+offset_top = -5.0
+offset_right = 26.0
+offset_bottom = 5.0
+value = 50.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("5_qjkh3")
+tint_progress = Color(0, 1, 0, 1)
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
+[connection signal="timeout" from="SidearmCooldown" to="." method="_on_sidearm_cooldown_timeout"]

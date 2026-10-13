@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SidearmData" format=3 uid="uid://cicsrhx3mbyxw"]
+
+[ext_resource type="Texture2D" uid="uid://dl3mj8b202xfv" path="res://assets/Bazooka_50px.png" id="1_hknbj"]
+[ext_resource type="Resource" uid="uid://vfr22opxnqes" path="res://projectiles/missile.tres" id="2_go54c"]
+[ext_resource type="Script" uid="uid://bdnda3s1g5cop" path="res://sidearms/sidearm_data.gd" id="3_rx4wv"]
+
+[resource]
+script = ExtResource("3_rx4wv")
+art = ExtResource("1_hknbj")
+projectile_data = ExtResource("2_go54c")
+damage = 30.0
+cooldown = 3.0
+projectile_speed = 500.0
+effect_radius = 100.0
+metadata/_custom_type_script = "uid://bdnda3s1g5cop"

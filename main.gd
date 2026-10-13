@@ -79,13 +79,16 @@ func _process(_delta: float) -> void:
 		var preview_pos = mouse_grid_pos + offset
 		preview_layer.set_cell(preview_pos, 1, Vector2i(0,0))
 
-
+'''
 func _physics_process(_delta: float) -> void:
-	# Check every frame: Is the attack button currently pressed down right now?
 	if Input.is_action_pressed("attack"):
 		if player:
 			player.attack()
-
+			
+	if Input.is_action_pressed("use_sidearm"):
+		if player:
+			player.use_sidearm()
+'''
 
 func _on_win_timer_timeout() -> void:
 	get_tree().paused = true

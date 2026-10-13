@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dsujdwdhywbdi"]
+
+[ext_resource type="Texture2D" uid="uid://dmbbdmp7ql323" path="res://assets/Red Effect Bullet Impact Explosion 32x32.png" id="1_6yiqx"]
+[ext_resource type="Script" uid="uid://cfw1ojlf56yqb" path="res://vfx/explosion.gd" id="2_otjre"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otjre"]
+atlas = ExtResource("1_6yiqx")
+region = Rect2(512, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8jem"]
+atlas = ExtResource("1_6yiqx")
+region = Rect2(544, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmjsj"]
+atlas = ExtResource("1_6yiqx")
+region = Rect2(576, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vymal"]
+atlas = ExtResource("1_6yiqx")
+region = Rect2(608, 384, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otjre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8jem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmjsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vymal")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 17.029387
+
+[node name="Explosion" type="AnimatedSprite2D" unique_id=921380733]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_otjre")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=190929792]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1708571467]
+shape = SubResource("CircleShape2D_g4v7s")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
