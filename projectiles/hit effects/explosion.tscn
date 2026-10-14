@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dsujdwdhywbdi"]
 
 [ext_resource type="Texture2D" uid="uid://dmbbdmp7ql323" path="res://assets/Red Effect Bullet Impact Explosion 32x32.png" id="1_6yiqx"]
-[ext_resource type="Script" uid="uid://cfw1ojlf56yqb" path="res://vfx/explosion.gd" id="2_otjre"]
+[ext_resource type="Script" uid="uid://cfw1ojlf56yqb" path="res://projectiles/hit effects/explosion.gd" id="2_otjre"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otjre"]
 atlas = ExtResource("1_6yiqx")
@@ -51,8 +51,7 @@ script = ExtResource("2_otjre")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=190929792]
 collision_layer = 0
-collision_mask = 4
-monitorable = false
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1708571467]
 shape = SubResource("CircleShape2D_g4v7s")

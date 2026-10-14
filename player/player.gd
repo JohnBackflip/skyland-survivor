@@ -98,10 +98,10 @@ func display_sidearm_cooldown() -> void:
 	tween.kill()
 
 
-func take_damage(value: float) -> void:
+func take_damage(value: float, bypass_iframe: bool = false) -> void:
 	# Reset health regen timer
 	#$HealthRegenTimer.start()
-	if is_invincible:
+	if is_invincible and not bypass_iframe:
 		return
 	current_health -= value
 	current_health = clampf(current_health, 0.0, max_health)

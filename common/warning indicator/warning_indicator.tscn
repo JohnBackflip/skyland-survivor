@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dvx5yqssbl4i2"]
+
+[ext_resource type="Script" uid="uid://bk2nsd37bmwbk" path="res://common/warning indicator/warning_indicator.gd" id="1_agpbk"]
+
+[node name="WarningIndicator" type="Node2D" unique_id=192912882]
+script = ExtResource("1_agpbk")

@@ -15,13 +15,16 @@ func use(projectile_data: ProjectileData, direction: Vector2, location: Vector2)
 			projectile.rotation = direction.angle()
 			projectile.direction = direction
 			projectile.speed = sidearm_data.projectile_speed
+			projectile.global_position = global_position
 			
 		sidearm_data.AttackType.ARTILLERY:
 			projectile = ARTILLERY_PROJECTILE.instantiate()
 			projectile.projectile_data = projectile_data.duplicate()
+			projectile.target_position = location
+			projectile.attack_delay = sidearm_data.attack_delay
+			projectile.global_position = location
 	
 	projectile.damage = sidearm_data.damage
 	
 	get_tree().current_scene.add_child(projectile)
-	projectile.global_position = global_position
 	projectile.fire()

@@ -11,4 +11,4 @@ enum AttackType {DIRECT, ARTILLERY}
 
 @export_category("Extra Properties")
 @export var projectile_speed: float
-@export var effect_radius: float
+@export var attack_delay: float

@@ -2,13 +2,5 @@
 
 [ext_resource type="Script" uid="uid://daisddf7yn7u" path="res://projectiles/artillery_projectile.gd" id="1_ec1fa"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
-
-[node name="ArtilleryProjectile" type="Area2D" unique_id=874030332]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
+[node name="ArtilleryProjectile" type="Sprite2D" unique_id=1345167579]
 script = ExtResource("1_ec1fa")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=223091770]
-shape = SubResource("CircleShape2D_g4v7s")

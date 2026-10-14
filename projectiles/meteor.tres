@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProjectileData" format=3 uid="uid://dl6i8sj0q7aoj"]
+
+[ext_resource type="Texture2D" uid="uid://dyf6kphg4u36u" path="res://assets/Meteor.png" id="1_5jqhw"]
+[ext_resource type="Script" uid="uid://bchmjglp66voh" path="res://projectiles/projectile_data.gd" id="1_22iiy"]
+[ext_resource type="PackedScene" uid="uid://dsujdwdhywbdi" path="res://projectiles/hit effects/explosion.tscn" id="2_3eiye"]
+
+[resource]
+script = ExtResource("1_22iiy")
+art = ExtResource("1_5jqhw")
+hit_effect = ExtResource("2_3eiye")
+is_aoe = true
+effect_radius = 70.0
+metadata/_custom_type_script = "uid://bchmjglp66voh"

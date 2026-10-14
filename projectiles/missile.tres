@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://g4is2xlpl6hy" path="res://assets/Missile_50px.png" id="1_8qbyv"]
 [ext_resource type="Script" uid="uid://bchmjglp66voh" path="res://projectiles/projectile_data.gd" id="1_p2325"]
-[ext_resource type="PackedScene" uid="uid://dsujdwdhywbdi" path="res://vfx/explosion.tscn" id="2_52h3m"]
+[ext_resource type="PackedScene" uid="uid://dsujdwdhywbdi" path="res://projectiles/hit effects/explosion.tscn" id="2_52h3m"]
 
 [resource]
 script = ExtResource("1_p2325")
