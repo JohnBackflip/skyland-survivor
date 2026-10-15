@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_1b6uc")
+name = "Meteor Staff"
 art = ExtResource("1_38f3j")
 projectile_data = ExtResource("2_ooc4l")
 attack_type = 1

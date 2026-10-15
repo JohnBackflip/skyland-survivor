@@ -60,7 +60,7 @@ func attack() -> void:
 
 
 func use_sidearm() -> void:
-	if not can_use_sidearm:
+	if not can_use_sidearm or equipped_sidearm == null:
 		return
 	var sidearm = SIDEARM.instantiate() as Sprite2D
 	sidearm.texture = equipped_sidearm.art
@@ -96,6 +96,13 @@ func display_sidearm_cooldown() -> void:
 	tween.tween_property(sidearm_cooldown_bar, "value", 0, equipped_sidearm.cooldown)
 	await tween.finished
 	tween.kill()
+
+
+func equip_sidearm(sidearm: SidearmData) -> SidearmData:
+	var dropped_sidearm = equipped_sidearm
+	if sidearm:
+		equipped_sidearm = sidearm.duplicate(true)
+	return dropped_sidearm
 
 
 func take_damage(value: float, bypass_iframe: bool = false) -> void:

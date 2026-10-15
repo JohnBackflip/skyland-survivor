@@ -15,19 +15,12 @@ func _ready() -> void:
 
 
 func apply_explosion_damage() -> void:
-	print("Collision shape radius: ", $Hitbox/CollisionShape2D.shape.radius)
 	# Wait 2 physics frames so Area2D populates its overlapping bodies/areas
 	await get_tree().physics_frame
 	await get_tree().physics_frame
-
-	print("Explosion position: ", global_position)
-	print("Explosion damage: ", damage)
-	print("Explosion radius: ", effect_radius)
-	print("Overlapping areas: ", $Hitbox.get_overlapping_areas())
 	
 	# Check all hurtboxes caught in the blast radius
 	var overlapping_bodies = $Hitbox.get_overlapping_areas()
-	print(overlapping_bodies)
 	for area in overlapping_bodies:
 		var entity = area.get_parent()
 		if entity.is_in_group("enemy") and area.is_in_group("hurtbox"):

@@ -42,8 +42,8 @@ var difficulty_increase_count: int = 0
 
 
 func _ready() -> void:
-	if game_manager.is_first_login:
-		show_tutorial()
+	#if game_manager.is_first_login:
+		#show_tutorial()
 	
 	enemy_stats = enemy_stats.duplicate()
 	flying_enemy_stats = flying_enemy_stats.duplicate()

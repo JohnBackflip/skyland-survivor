@@ -17,6 +17,7 @@ var rooms: Array[BSPRoom] #Final rooms
 @export var connection_tile_index: int
 
 const CHEST = preload("uid://cobqg5sqyqmtr")
+const CRATE = preload("uid://bl8xdu6qx2h8y")
 
 
 func generate_map(width: int, height: int) -> void:

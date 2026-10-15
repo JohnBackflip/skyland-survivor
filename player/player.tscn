@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://di8dsdfcaf5vn" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://dvekoj6sff5xd" path="res://assets/Player.png" id="2_g1dw6"]
-[ext_resource type="Resource" uid="uid://cicsrhx3mbyxw" path="res://sidearms/bazooka.tres" id="2_yw30f"]
 [ext_resource type="AudioStream" uid="uid://degxwa35vdnvk" path="res://assets/audio/sword_sfx.mp3" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://det0hlfn6hw0x" path="res://assets/blank.png" id="5_qjkh3"]
 
@@ -11,14 +10,14 @@ radius = 8.5
 height = 21.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1dw6"]
-height = 28.0
+radius = 9.0
+height = 26.0
 
 [node name="Player" type="CharacterBody2D" unique_id=744340698 groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
-equipped_sidearm = ExtResource("2_yw30f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1886787975]
 position = Vector2(0, -5)

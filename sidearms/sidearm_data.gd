@@ -3,6 +3,7 @@ class_name SidearmData
 
 enum AttackType {DIRECT, ARTILLERY}
 
+@export var name: String
 @export var art: Texture2D
 @export var projectile_data: Resource
 @export var attack_type: AttackType

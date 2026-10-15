@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://cja6fhun6div1"]
+
+[ext_resource type="Resource" uid="uid://cicsrhx3mbyxw" path="res://sidearms/bazooka.tres" id="1_3hule"]
+[ext_resource type="Script" uid="uid://bejj6un2tnpnd" path="res://interactables/item pools/item_pool.gd" id="1_gsjea"]
+[ext_resource type="Resource" uid="uid://d2ncxtr455501" path="res://sidearms/meteor_staff.tres" id="2_bt5db"]
+
+[resource]
+script = ExtResource("1_gsjea")
+items = [ExtResource("1_3hule"), ExtResource("2_bt5db")]
+metadata/_custom_type_script = "uid://bejj6un2tnpnd"

@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bl8xdu6qx2h8y"]
+
+[ext_resource type="Script" uid="uid://oypkhgvt3jme" path="res://interactables/crate.gd" id="1_ma83t"]
+[ext_resource type="Resource" uid="uid://cja6fhun6div1" path="res://interactables/item pools/sidearm_pool.tres" id="2_pxf6j"]
+[ext_resource type="Texture2D" uid="uid://bnc34f5qsk8b0" path="res://assets/crate.png" id="3_esbb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jpn1"]
+size = Vector2(15, 21)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jpn1"]
+radius = 25.0
+height = 50.0
+
+[node name="Crate" type="StaticBody2D" unique_id=2000952191]
+collision_mask = 0
+script = ExtResource("1_ma83t")
+sidearm_pool = ExtResource("2_pxf6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1209480242]
+position = Vector2(4.7683716e-07, -0.5)
+scale = Vector2(0.9375, 0.90625)
+texture = ExtResource("3_esbb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308075489]
+position = Vector2(8.940696e-08, -1.0000001)
+rotation = 1.5707964
+scale = Vector2(1.2800009, 0.95999956)
+shape = SubResource("RectangleShape2D_4jpn1")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=759171385]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1503092474]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4jpn1")
+
+[node name="Popup" type="PanelContainer" parent="." unique_id=935566446]
+visible = false
+z_index = 1
+offset_left = -8.0
+offset_top = -29.0
+offset_right = 8.0
+offset_bottom = -13.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup" unique_id=2046668064]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="KeyBindLabel" type="Label" parent="Popup/MarginContainer" unique_id=923935234]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Effect" type="Control" parent="." unique_id=2002594287]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -27.0
+offset_right = 20.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EffectLabel" type="Label" parent="Effect" unique_id=420575972]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -11.5
+offset_right = 38.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 11)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Stat boosted!"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_exited"]
